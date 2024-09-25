@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const postsRoutes = require('./api/posts/posts.routes');
 const authorsRoutes = require('./api/authors/authors.routes');
+const tagsRoutes = require('./api/tags/tags.routes');
 const connectDb = require('./database');
 require("dotenv").config()
 connectDb();
 app.use(express.json());
 app.use('/api/posts', postsRoutes);
 app.use('/api/authors', authorsRoutes)
+app.use('/api/tags', tagsRoutes)
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Path not found' });
 });
